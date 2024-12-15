@@ -2,14 +2,19 @@ from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from supabase import create_client, Client
 from flask import Flask, render_template, request, redirect, url_for
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-# Create a client
-SUPABASE_URL = "https://supdrzpdynaekvysaeio.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN1cGRyenBkeW5hZWt2eXNhZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQxODQzNjAsImV4cCI6MjA0OTc2MDM2MH0.PpDKwNEUt2l5h2rISdhjgjShzKijozx_dmnKoLFFSMM"
+# Variables de entorno
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+FLASK_SECRET_KEY = os.getenv("FLASK_SECRET_KEY")
+
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN1cGRyenBkeW5hZWt2eXNhZWlvIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczNDE4NDM2MCwiZXhwIjoyMDQ5NzYwMzYwfQ.dXYfGmjRFFUL0bUOytGUur8eGS5VxbndLlnmqhThHN4'  # Replace with your secret key
+app.config['SECRET_KEY'] = FLASK_SECRET_KEY
 app.config['DEBUG'] = True
 login_manager = LoginManager()
 login_manager.init_app(app)
