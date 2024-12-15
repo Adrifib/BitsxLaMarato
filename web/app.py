@@ -72,6 +72,10 @@ def profile():
 def index():
     return render_template('index.html')
 
+@app.route('/insertardatos')
+def insertardatos():
+    return render_template('insertardatos.html')
+
 @app.route('/logout')
 def logout():
     logout_user()
