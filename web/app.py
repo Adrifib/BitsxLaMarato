@@ -56,11 +56,17 @@ def register():
             response = supabase.auth.sign_up({"email": email, "password": password})
             if response.user:
                 flash('Your account has been created! You are now able to log in', 'success')
-                return redirect(url_for('login'))
+                return redirect(url_for('QR'))
         except Exception as e:
             print(f"Error registering: {e}")
         flash('Registration Unsuccessful. Please check your details', 'danger')
     return render_template('register.html')
+
+@app.route('/QR')
+def QR():
+    base_url = request.host_url  # Obtén la URL base del servidor
+    qr_url = base_url + 'inici'  # Concatenamos la URL de la página de inicio
+    return render_template('QR.html', qr_url=qr_url)
 
 @app.route('/profile')
 @login_required
