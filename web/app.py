@@ -35,13 +35,15 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        response = supabase.auth.sign_in_with_password({"email": email, "password": password})
-        if response.user:
-            user = User(email)
-            login_user(user)
-            return redirect(url_for('profile'))
-        else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
+        try:
+            response = supabase.auth.sign_in_with_password({"email": email, "password": password})
+            if response.user:
+                user = User(email)
+                login_user(user)
+                return redirect(url_for('profile'))
+        except Exception as e:
+            print(f"Error logging in: {e}")
+        flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html')
 
 
@@ -50,14 +52,15 @@ def register():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        response = supabase.auth.sign_up({"email": email, "password": password})
-        if response.user:
-            flash('Your account has been created! You are now able to log in', 'success')
-            return redirect(url_for('login'))
-        else:
-            flash('Registration Unsuccessful. Please check your details', 'danger')
+        try:
+            response = supabase.auth.sign_up({"email": email, "password": password})
+            if response.user:
+                flash('Your account has been created! You are now able to log in', 'success')
+                return redirect(url_for('login'))
+        except Exception as e:
+            print(f"Error registering: {e}")
+        flash('Registration Unsuccessful. Please check your details', 'danger')
     return render_template('register.html')
-
 
 @app.route('/profile')
 @login_required
