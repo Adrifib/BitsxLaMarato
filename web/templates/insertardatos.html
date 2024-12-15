@@ -34,8 +34,11 @@
     <style>
         body {
             background-image: url('{{ url_for('static', filename='background.jpg') }}');
+            background-repeat: no-repeat;
             background-size: cover;
-            background-position: center;
+            background-position: center center;
+            min-height: 100vh;
+            margin: 0;
         }
     </style>
 </head>
