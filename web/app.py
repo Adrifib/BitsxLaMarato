@@ -6,8 +6,6 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-email = ""
-
 # Variables de entorno
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
@@ -34,7 +32,6 @@ def load_user(email):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    global email
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -52,7 +49,6 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    global email
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -69,8 +65,7 @@ def register():
 @app.route('/QR')
 def QR():
     base_url = request.host_url  # Obtén la URL base del servidor
-    user = User(email)
-    qr_url = base_url + 'inici?user=' + str(user) # Concatenamos la URL de la página de inicio
+    qr_url = base_url + 'inici?user=andres@gmail.com' # Concatenamos la URL de la página de inicio
     return render_template('QR.html', qr_url=qr_url)
 
 @app.route('/profile')
