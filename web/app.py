@@ -64,7 +64,7 @@ def register():
 
 @app.route('/QR')
 def QR():
-	user_email = request.args.get('user_email')
+    user_email = request.args.get('user_email')
     base_url = request.host_url  # Obtén la URL base del servidor
     qr_url = base_url + 'inici?user=' + str(user_email) # Concatenamos la URL de la página de inicio
     return render_template('QR.html', qr_url=qr_url)
