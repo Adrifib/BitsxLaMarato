@@ -264,9 +264,10 @@ def tractament():
     return render_template('tractament.html', tractaments_client=tractaments_client, TRACTAMENTS=TRACTAMENTS)
 
 
-
-
-
+@app.route('/rediografia-torax')
+@login_required
+def rediografia_torax():
+    return render_template('rediografia-torax.html')
 
 if __name__ == "__main__":
     app.run(port=5000)

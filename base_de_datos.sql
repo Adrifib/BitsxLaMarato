@@ -43,6 +43,16 @@ CREATE TABLE CausesAguditzacio (
     descripcio TEXT
 );
 
+-- Taula per a Pacientes
+CREATE TABLE Pacientes (
+    historyNumber INT PRIMARY KEY,
+    mpidType VARCHAR(255),
+    exacerbationCause VARCHAR(255),
+    baseTreatment VARCHAR(255),
+    immunosuppression VARCHAR(255),
+    comorbidities VARCHAR(255)
+);
+
 -- Inserció de dades a la taula HistoriaClinica
 INSERT INTO HistoriaClinica (tipus_mpid, causes_aguditzacio, tractament_base, immunosupressio, comorbiditats)
 VALUES
