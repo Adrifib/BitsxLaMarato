@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
+email = ""
+
 # Variables de entorno
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
@@ -32,6 +34,7 @@ def load_user(email):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    global email
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -49,6 +52,7 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    global email
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
