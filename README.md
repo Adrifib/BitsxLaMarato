@@ -14,6 +14,6 @@ Enfoque en emergencias: Diseñada para situaciones críticas donde la rapidez en
 
 Tecnologías utilizadas
 
-Lenguaje de programación: Python
+Lenguaje de programación: Python, SQL
 
 Sistema de gestión de bases de datos: Supabase
