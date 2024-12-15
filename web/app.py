@@ -56,7 +56,7 @@ def register():
             response = supabase.auth.sign_up({"email": email, "password": password})
             if response.user:
                 flash('Your account has been created! You are now able to log in', 'success')
-                return redirect(url_for('inici', user_email=email))
+                return redirect(url_for('QR', user_email=email))
         except Exception as e:
             print(f"Error registering: {e}")
         flash('Registration Unsuccessful. Please check your details', 'danger')
